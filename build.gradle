@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.3.3'
+	id 'org.springframework.boot' version '3.2.7'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
@@ -19,7 +19,7 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "2023.0.3")
+	set('springCloudVersion', "2023.0.0")
 }
 
 dependencies {
@@ -35,6 +35,8 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
 	
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 }
 
 dependencyManagement {
@@ -47,5 +49,5 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-// implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-// implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
