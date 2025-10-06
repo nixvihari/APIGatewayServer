@@ -25,15 +25,15 @@ public class SecurityConfig {
                         exchange -> exchange
                         		//users can access get products and orders only
                                 .pathMatchers(PRODUCT_SERVICE_URL,
-                                				ORDER_SERVICE_URL,
-                                				PRODUCT_SERVICE_URL + "/*",
-                                				ORDER_SERVICE_URL + "/*").hasRole("PUBLIC")
+                                				ORDER_SERVICE_URL).hasRole("PUBLIC")
                                 //only PRODUCT_MODIFIER(seller, admin) can add, update or delete products
+                                .pathMatchers(HttpMethod.GET, PRODUCT_SERVICE_URL+"/**").hasRole("PUBLIC")
                                 .pathMatchers(HttpMethod.POST, PRODUCT_SERVICE_URL+"/**").hasRole("PRODUCT_MODIFIER")
                                 .pathMatchers(HttpMethod.PUT, PRODUCT_SERVICE_URL+"/**").hasRole("PRODUCT_MODIFIER")
                                 .pathMatchers(HttpMethod.DELETE, PRODUCT_SERVICE_URL+"/**").hasRole("PRODUCT_MODIFIER")
                                 //only ORDER_CREATOR(seller, admin) can create orders
                                 //only admin can modify or delete orders
+                                .pathMatchers(HttpMethod.GET, ORDER_SERVICE_URL +"/**").hasRole("PUBLIC")
                                 .pathMatchers(HttpMethod.POST, ORDER_SERVICE_URL +"/**").hasRole("ORDER_CREATOR")
                                 .pathMatchers(HttpMethod.PUT, ORDER_SERVICE_URL +"/**").hasRole("ADMIN")
                                 .pathMatchers(HttpMethod.DELETE, ORDER_SERVICE_URL +"/**").hasRole("ADMIN")
